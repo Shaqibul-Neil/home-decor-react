@@ -1,5 +1,7 @@
+import { NavLink } from "react-router";
+
 const Product = ({ product }) => {
-  const { name, category, price, image } = product;
+  const { id, name, category, price, image, stock } = product;
   return (
     <div className="border border-gray-400 shadow-sm md:space-y-6 space-y-4 md:p-5 p-3 rounded-lg hover:scale-105 transition ease-in-out duration-300">
       <figure className="h-96 rounded-lg flex items-center justify-center">
@@ -11,11 +13,23 @@ const Product = ({ product }) => {
       </figure>
       <div className="md:space-y-4 space-y-3">
         <h2 className="text-2xl font-bold">{name}</h2>
-        <p className="font-medium text-gray-600">Category : {category}</p>
-        <p className="font-medium text-gray-600">Price : {price}</p>
+        <div className="flex items-center gap-4">
+          <p className="font-medium text-gray-600 text-lg">
+            Category : {category}
+          </p>
+          {stock ? (
+            <div className="badge badge-success  ">Available</div>
+          ) : (
+            <div className="badge badge-error">Stock Out</div>
+          )}
+        </div>
+
+        <p className="font-medium text-primary text-2xl">Price : ${price}</p>
       </div>
       <div className="flex justify-end">
-        <button className="btn btn-outline btn-primary">View Details</button>
+        <NavLink to={`/product/${id}`} className="btn btn-outline btn-primary">
+          View Details
+        </NavLink>
       </div>
     </div>
   );

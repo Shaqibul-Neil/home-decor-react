@@ -9,7 +9,7 @@ const useProducts = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("./furniture.json")
+      .get("../furniture.json")
       .then((data) => setProducts(data.data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));

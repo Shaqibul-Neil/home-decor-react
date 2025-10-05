@@ -7,13 +7,12 @@ const Products = () => {
   const { products } = useProducts();
   const [search, setSearch] = useState("");
   const searchedText = search.toLowerCase().trim();
-  console.log(search);
   const searchedItems = search
     ? products.filter((product) =>
         product.name.toLowerCase().includes(searchedText)
       )
     : products;
-  console.log(searchedItems);
+
   return (
     <section className="my-16 lg:my-24 space-y-12">
       <div className="flex justify-between items-center">
