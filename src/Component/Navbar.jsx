@@ -2,8 +2,8 @@ import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
+    <nav className="navbar bg-base-100 shadow-sm">
+      <div className="navbar-start w-full lg:w-[1/2]">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -23,7 +23,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-gray-200 rounded-box z-1 mt-3 w-60 p-3 shadow space-y-2"
           >
             <li>
               <NavLink to="/">Home</NavLink>
@@ -34,15 +34,18 @@ const Navbar = () => {
             <li>
               <NavLink to="/wishlist">Wishlist</NavLink>
             </li>
+            <li>
+              <NavLink to="/cart">Cart</NavLink>
+            </li>
           </ul>
         </div>
         <Link to="/" className="text-2xl font-bold">
           Home Decor
         </Link>
       </div>
-      <div className="navbar-center "></div>
-      <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+
+      <div className="navbar-end hidden lg:flex space-x-4">
+        <ul className="menu menu-horizontal space-x-4">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
@@ -52,10 +55,12 @@ const Navbar = () => {
           <li>
             <NavLink to="/wishlist">Wishlist</NavLink>
           </li>
+          <li>
+            <NavLink to="/cart">Cart</NavLink>
+          </li>
         </ul>
-        <a className="btn">Button</a>
       </div>
-    </div>
+    </nav>
   );
 };
 
