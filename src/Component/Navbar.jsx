@@ -2,10 +2,14 @@ import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-base-100 shadow-sm">
+    <nav className="navbar w-11/12 mx-auto px-0">
       <div className="navbar-start w-full lg:w-[1/2]">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden pl-0 pr-1 mt-1"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

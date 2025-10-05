@@ -11,8 +11,13 @@ const router = createBrowserRouter([
     path: "/",
     Component: RootLayout,
     errorElement: <ErrorPage />,
+    hydrateFallbackElement: <p>Loading....</p>,
     children: [
-      { index: true, Component: Home },
+      {
+        index: true,
+        Component: Home,
+        loader: () => fetch("./furniture.json"),
+      },
       { path: "/products", Component: Products },
       { path: "/wishlist", Component: Wishlist },
       { path: "/cart", Component: Cart },
