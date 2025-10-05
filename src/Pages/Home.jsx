@@ -1,12 +1,13 @@
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import Product from "../Component/Product";
+import useProducts from "../Hooks/useProducts";
 
 const Home = () => {
-  const productsData = useLoaderData();
-  const featuredProducts = productsData.slice(0, 6);
+  const { products, loading, error } = useProducts();
+  const featuredProducts = products.slice(0, 6);
   return (
     <section className="my-16 lg:my-24 space-y-12">
-      <h2 className="text-2xl font-bold">Featured Products</h2>
+      <h2 className="text-3xl font-bold">Featured Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {featuredProducts.map((product) => (
           <Product key={product.id} product={product} />
