@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoSearchedProducts from "../Component/NoSearchedProducts";
 import WishlistItem from "../Component/WishlistItem";
 import WishlistChart from "../Component/WishlistChart";
+import { loadWishList } from "../Utilities/localStorage";
 
 const Wishlist = () => {
-  const [wishLists, setWishLists] = useState([]);
+  const [wishLists, setWishLists] = useState(() => loadWishList());
   const [sortBy, setSortBy] = useState("");
-  useEffect(() => {
-    const savedLists = JSON.parse(localStorage.getItem("wishlist"));
-    if (savedLists) setWishLists(savedLists);
-  }, []);
+
+  // useEffect(() => {
+  //   const savedLists = JSON.parse(localStorage.getItem("wishlist"));
+  //   if (savedLists) setWishLists(savedLists);
+  // }, []);
 
   //sort by price
   const sortedProducts = [...wishLists].sort((a, b) => {

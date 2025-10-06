@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import useProducts from "../Hooks/useProducts";
 import { useState } from "react";
+import { updateList } from "../Utilities/localStorage";
 
 const ProductDetails = () => {
   const [inputQuantity, setInputQuantity] = useState(1);
@@ -22,25 +23,25 @@ const ProductDetails = () => {
   } = product || {};
 
   //adding to wishlist
-  const handleWishlist = () => {
-    const existingList = JSON.parse(localStorage.getItem("wishlist"));
-    let updatedList = [];
-    // console.log(existingList);
+  // const handleWishlist = () => {
+  //   const existingList = JSON.parse(localStorage.getItem("wishlist"));
+  //   let updatedList = [];
+  //   // console.log(existingList);
 
-    if (existingList) {
-      //checking if the product already exist in the storage
-      const isDuplicate = existingList.some((list) => list.id === product.id);
-      // console.log(isDuplicate);
-      if (isDuplicate) return alert("Product is in wishlist");
-      //if not then add
-      updatedList = [...existingList, product];
-    } else {
-      //if 1st time in wishlist
-      updatedList.push(product);
-    }
-    console.log(updatedList);
-    localStorage.setItem("wishlist", JSON.stringify(updatedList));
-  };
+  //   if (existingList) {
+  //     //checking if the product already exist in the storage
+  //     const isDuplicate = existingList.some((list) => list.id === product.id);
+  //     // console.log(isDuplicate);
+  //     if (isDuplicate) return alert("Product is in wishlist");
+  //     //if not then add
+  //     updatedList = [...existingList, product];
+  //   } else {
+  //     //if 1st time in wishlist
+  //     updatedList.push(product);
+  //   }
+  //   console.log(updatedList);
+  //   localStorage.setItem("wishlist", JSON.stringify(updatedList));
+  // };
 
   return (
     <div className="flex justify-between items-center my-24 gap-12">
@@ -101,7 +102,7 @@ const ProductDetails = () => {
         <div className="flex items-center gap-6">
           <button
             className="font-bold px-12 py-3 border rounded-lg cursor-pointer text-lg"
-            onClick={handleWishlist}
+            onClick={() => updateList(product)}
           >
             Add to Wishlist
           </button>

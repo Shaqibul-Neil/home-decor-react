@@ -26,9 +26,11 @@ const WishlistChart = ({ sortedProducts }) => {
   }));
   console.log(chartData);
 
-  return (
+  return sortedProducts.length === 0 ? (
+    ""
+  ) : (
     <div className="space-y-8">
-      <h2 className="text-3xl font-bold">My Wishlist Chart</h2>
+      <h2 className="text-3xl font-bold">My Wishlist Summary</h2>
       <div className="bg-base-100 p-4 rounded-xl h-80 border">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
