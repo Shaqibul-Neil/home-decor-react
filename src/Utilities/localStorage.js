@@ -1,3 +1,4 @@
+//get from local storage
 const loadWishList = () => {
   try {
     const data = localStorage.getItem("wishlist");
@@ -8,6 +9,7 @@ const loadWishList = () => {
   }
 };
 
+//save to local storage
 const updateList = (product) => {
   const wishList = loadWishList();
   try {
@@ -20,4 +22,15 @@ const updateList = (product) => {
   }
 };
 
-export { loadWishList, updateList };
+//remove from local storage
+const removeWishList = (id) => {
+  const wishList = loadWishList();
+  try {
+    const updatedWishList = wishList.filter((p) => p.id !== id);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishList));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { loadWishList, updateList, removeWishList };

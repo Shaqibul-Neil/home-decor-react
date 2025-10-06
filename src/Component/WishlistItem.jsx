@@ -1,13 +1,15 @@
 import { NavLink } from "react-router";
+import { removeWishList } from "../Utilities/localStorage";
 
 const WishlistItem = ({ wishList, setWishLists }) => {
   //delete from wishlist
   const handleRemove = (id) => {
-    const existingList = JSON.parse(localStorage.getItem("wishlist"));
-    let updatedList = existingList.filter((list) => list.id !== id);
+    // const existingList = JSON.parse(localStorage.getItem("wishlist"));
+    // let updatedList = existingList.filter((list) => list.id !== id);
+    //remove from local storage
+    removeWishList(id);
     //ui instant update
-    setWishLists(updatedList);
-    localStorage.setItem("wishlist", JSON.stringify(updatedList));
+    setWishLists((prev) => prev.filter((p) => p.id !== id));
   };
 
   return (
