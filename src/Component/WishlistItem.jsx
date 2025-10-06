@@ -1,6 +1,15 @@
 import { NavLink } from "react-router";
 
-const WishlistItem = ({ wishList }) => {
+const WishlistItem = ({ wishList, setWishLists }) => {
+  //delete from wishlist
+  const handleRemove = (id) => {
+    const existingList = JSON.parse(localStorage.getItem("wishlist"));
+    let updatedList = existingList.filter((list) => list.id !== id);
+    //ui instant update
+    setWishLists(updatedList);
+    localStorage.setItem("wishlist", JSON.stringify(updatedList));
+  };
+
   return (
     <div className="border border-gray-400 shadow-sm p-4 rounded-lg flex items-center justify-between">
       <div className=" space-y-6 flex items-center gap-6">
@@ -32,7 +41,12 @@ const WishlistItem = ({ wishList }) => {
         <NavLink to={`/cart`} className="btn btn-outline btn-primary">
           Add To Cart
         </NavLink>
-        <button className="btn btn-outline btn-error">Remove</button>
+        <button
+          className="btn btn-outline btn-error"
+          onClick={() => handleRemove(wishList.id)}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );

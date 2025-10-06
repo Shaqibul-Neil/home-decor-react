@@ -10,10 +10,11 @@ const Wishlist = () => {
     if (savedLists) setWishLists(savedLists);
   }, []);
 
+  //sort by price
   const sortedProducts = [...wishLists].sort((a, b) => {
     if (!sortBy) return 0;
     if (sortBy === "price-asc") return a.price - b.price;
-    if (sortBy === "price-dsc") return b.price - a.price;
+    if (sortBy === "price-desc") return b.price - a.price;
   });
 
   return (
@@ -38,7 +39,7 @@ const Wishlist = () => {
               Sort By Price
             </option>
             <option value="price-asc">Low-&gt;High</option>
-            <option value="price-dsc">High-&gt;Low</option>
+            <option value="price-desc">High-&gt;Low</option>
           </select>
         </label>
       </div>
@@ -47,7 +48,11 @@ const Wishlist = () => {
           <NoSearchedProducts />
         ) : (
           sortedProducts.map((wishList) => (
-            <WishlistItem key={wishList.id} wishList={wishList} />
+            <WishlistItem
+              key={wishList.id}
+              wishList={wishList}
+              setWishLists={setWishLists}
+            />
           ))
         )}
       </div>

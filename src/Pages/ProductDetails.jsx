@@ -21,6 +21,7 @@ const ProductDetails = () => {
     description,
   } = product || {};
 
+  //adding to wishlist
   const handleWishlist = () => {
     const existingList = JSON.parse(localStorage.getItem("wishlist"));
     let updatedList = [];
