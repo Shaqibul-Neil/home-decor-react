@@ -49,7 +49,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end hidden lg:flex space-x-4">
-        <ul className="menu menu-horizontal space-x-4">
+        <ul className="menu menu-horizontal space-x-4 text-base">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
