@@ -28,10 +28,11 @@ const WishlistItem = ({ wishList }) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex items-center gap-4">
         <NavLink to={`/cart`} className="btn btn-outline btn-primary">
           Add To Cart
         </NavLink>
+        <button className="btn btn-outline btn-error">Remove</button>
       </div>
     </div>
   );

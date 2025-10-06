@@ -4,27 +4,49 @@ import WishlistItem from "../Component/WishlistItem";
 
 const Wishlist = () => {
   const [wishLists, setWishLists] = useState([]);
+  const [sortBy, setSortBy] = useState("");
   useEffect(() => {
     const savedLists = JSON.parse(localStorage.getItem("wishlist"));
     if (savedLists) setWishLists(savedLists);
   }, []);
 
+  const sortedProducts = [...wishLists].sort((a, b) => {
+    if (!sortBy) return 0;
+    if (sortBy === "price-asc") return a.price - b.price;
+    if (sortBy === "price-dsc") return b.price - a.price;
+  });
+
   return (
-    <div className="space-y-12 my-24">
+    <div className="space-y-12 my-24 min-h-screen">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">
           My Wishlist
           <span className="ml-4 text-sm text-gray-600 font-medium">
-            {wishLists.length} Products found
+            {sortedProducts.length < 9
+              ? `0${wishLists.length} `
+              : `${wishLists.length} `}
+            Products found
           </span>
         </h2>
-        <button>Sort</button>
+        <label className="form-control max-w-xs w-full">
+          <select
+            className="bg-blue-300 border-gray-300 text-gray-800 font-semibold outline-none select focus:ring-0 focus:border-blue-500 transition-colors duration-200 rounded-lg"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option disabled value="">
+              Sort By Price
+            </option>
+            <option value="price-asc">Low-&gt;High</option>
+            <option value="price-dsc">High-&gt;Low</option>
+          </select>
+        </label>
       </div>
       <div className="grid grid-cols-1 gap-6">
-        {wishLists.length === 0 ? (
+        {sortedProducts.length === 0 ? (
           <NoSearchedProducts />
         ) : (
-          wishLists.map((wishList) => (
+          sortedProducts.map((wishList) => (
             <WishlistItem key={wishList.id} wishList={wishList} />
           ))
         )}

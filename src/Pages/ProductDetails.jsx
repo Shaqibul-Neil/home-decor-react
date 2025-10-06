@@ -30,26 +30,12 @@ const ProductDetails = () => {
       //checking if the product already exist in the storage
       const isDuplicate = existingList.some((list) => list.id === product.id);
       // console.log(isDuplicate);
-      if (isDuplicate) {
-        //now check again with map to find the id to which u want to add the quantity
-        updatedList = existingList.map((item) =>
-          item.id === product.id
-            ? {
-                ...item,
-                quantity: (item.quantity || 1) + Number(inputQuantity),
-              }
-            : item
-        );
-      } else {
-        //if not then add
-        updatedList = [
-          ...existingList,
-          { ...product, quantity: Number(inputQuantity) },
-        ];
-      }
+      if (isDuplicate) return alert("Product is in wishlist");
+      //if not then add
+      updatedList = [...existingList, product];
     } else {
-      //if qst time in wishlist
-      updatedList.push({ ...product, quantity: Number(inputQuantity) });
+      //if 1st time in wishlist
+      updatedList.push(product);
     }
     console.log(updatedList);
     localStorage.setItem("wishlist", JSON.stringify(updatedList));
@@ -80,7 +66,7 @@ const ProductDetails = () => {
         </div>
         <div className="flex items-center gap-8">
           <h2 className="font-medium text-blue-500 b text-3xl">
-            Price : ${inputQuantity * price}
+            Price : ${price}
           </h2>
           <label htmlFor="quantity" className="font-medium text-2xl">
             Quantity :
