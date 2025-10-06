@@ -60,7 +60,7 @@ const Wishlist = () => {
 
       {/* chart */}
       <div>
-        <WishlistChart />
+        <WishlistChart sortedProducts={sortedProducts} />
       </div>
     </div>
   );
