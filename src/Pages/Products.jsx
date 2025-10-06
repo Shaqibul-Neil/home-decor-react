@@ -2,9 +2,10 @@ import { useState } from "react";
 import Product from "../Component/Product";
 import useProducts from "../Hooks/useProducts";
 import NoSearchedProducts from "../Component/NoSearchedProducts";
+import LoadingSpinner from "../Component/LoadingSpinner";
 
 const Products = () => {
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
   const [search, setSearch] = useState("");
   const searchedText = search.toLowerCase().trim();
   const searchedItems = search
@@ -32,17 +33,15 @@ const Products = () => {
           />
         </label>
       </div>
-      {searchedItems.length === 0 ? (
+      {loading ? (
+        <LoadingSpinner count="16" />
+      ) : searchedItems.length === 0 ? (
         <NoSearchedProducts />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {searchedItems.length === 0 ? (
-            <NoSearchedProducts />
-          ) : (
-            searchedItems.map((product) => (
-              <Product key={product.id} product={product} />
-            ))
-          )}
+          {searchedItems.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
         </div>
       )}
     </section>
