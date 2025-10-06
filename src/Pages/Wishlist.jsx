@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NoSearchedProducts from "../Component/NoSearchedProducts";
 import WishlistItem from "../Component/WishlistItem";
+import WishlistChart from "../Component/WishlistChart";
 
 const Wishlist = () => {
   const [wishLists, setWishLists] = useState([]);
@@ -55,6 +56,11 @@ const Wishlist = () => {
             />
           ))
         )}
+      </div>
+
+      {/* chart */}
+      <div>
+        <WishlistChart />
       </div>
     </div>
   );
